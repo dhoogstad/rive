@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Rive Links Uitlijnen</title>
     <script src="https://unpkg.com/@rive-app/canvas"></script>
     <style>
-body, html {
-    margin: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    overflow-y: hidden;   /* Prevent vertical scrolling */
-    background-color: red;
-}
-canvas {
-  position: fixed;
-  left: 0;
-  display: block;
-  height: 100%;
-  width: auto;
-  background:yellow;
-}
-</style>
-  </head>
-  <body>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: purple;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
     <canvas id="canvas"></canvas>
     <script>
-      const r = new rive.Rive({
-        src: "https://dhoogstad.github.io/rive/Rive_experiment_01.riv",
-        canvas: document.getElementById("canvas"),
-        autoplay: true,
-        stateMachines: "State Machine 1",
-        onLoad: () => {
-          // Ensure the drawing surface matches the canvas size and device pixel ratio
-          r.resizeDrawingSurfaceToCanvas();
-        },
-      });
+        const canvas = document.getElementById("canvas");
+        const aspectRatio = 1080 / 1350;
+
+        function resize() {
+            const dpr = window.devicePixelRatio || 1;
+            const h = window.innerHeight;
+            const w = h * aspectRatio;
+
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = `${w}px`;
+            canvas.style.height = `${h}px`;
+
+            r.resizeDrawingSurfaceToCanvas();
+        }
+
+        const r = new rive.Rive({
+            src: "https://dhoogstad.github.io/rive/Rive_experiment_01.riv",
+            canvas: canvas,
+            autoplay: true,
+            stateMachines: "State Machine 1",
+            onLoad: resize
+        });
+
+        window.addEventListener("resize", resize);
     </script>
-  </body>
+</body>
 </html>
