@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Rive Experiment 1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="https://unpkg.com/@rive-app/canvas@2.17.3"></script>
+    <style type="text/css">
+      html,body{ 
+        height:100%
+      }
+      body{
+        background: #336bff;
+      }
+      canvas{
+        width:108px;
+        height:135px;
+      }
+    </style>
   </head>
   <body>
-    <canvas id="canvas" width="1080" height="1350"></canvas>
+    <canvas id="canvas"></canvas>
 
-    <script src="https://unpkg.com/@rive-app/canvas"></script>
+    
     <script>
       const r = new rive.Rive({
         src: "https://dhoogstad.github.io/rive/Rive_experiment_01.riv",
