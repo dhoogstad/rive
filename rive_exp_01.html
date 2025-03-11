@@ -3,19 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rive Experimentje</title>
+    <title>Rive Links Uitlijnen</title>
     <script src="https://unpkg.com/@rive-app/canvas"></script>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: greenyellow;
+            background: transparent;
         }
         canvas {
             position: fixed;
             top: 0;
             left: 0;
+            background: transparent;
         }
     </style>
 </head>
@@ -24,7 +25,6 @@
     <script>
         const canvas = document.getElementById("canvas");
         const aspectRatio = 1080 / 1350;
-        let resizeTimeout;
 
         function resize() {
             const dpr = window.devicePixelRatio || 1;
@@ -39,11 +39,6 @@
             r.resizeDrawingSurfaceToCanvas();
         }
 
-        function debounceResize() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(resize, 100);
-        }
-
         const r = new rive.Rive({
             src: "https://dhoogstad.github.io/rive/Rive_experiment_01.riv",
             canvas: canvas,
@@ -52,7 +47,7 @@
             onLoad: resize
         });
 
-        window.addEventListener("resize", debounceResize);
+        window.addEventListener("resize", resize);
     </script>
 </body>
 </html>
