@@ -3,51 +3,39 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rive Experimenting</title>
+    <title>Rive Experiment</title>
     <script src="https://unpkg.com/@rive-app/canvas"></script>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: transparent;
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: transparent;
-        }
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: red;
+        height: 100vh;
+    }
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: auto;
+        aspect-ratio: 1080 / 1350;
+        background: yellow;
+    }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <script>
-        const canvas = document.getElementById("canvas");
-        const aspectRatio = 1080 / 1350;
-
-        function resize() {
-            const dpr = window.devicePixelRatio || 1;
-            const h = window.innerHeight;
-            const w = h * aspectRatio;
-
-            canvas.width = w * dpr;
-            canvas.height = h * dpr;
-            canvas.style.width = `${w}px`;
-            canvas.style.height = `${h}px`;
-
-            r.resizeDrawingSurfaceToCanvas();
-        }
-
-        const r = new rive.Rive({
-            src: "https://dhoogstad.github.io/rive/Rive_experiment_01.riv",
-            canvas: canvas,
-            autoplay: true,
-            stateMachines: "State Machine 1",
-            onLoad: resize
-        });
-
-        window.addEventListener("resize", resize);
-    </script>
+    const r = new rive.Rive({
+        src: "https://dhoogstad.github.io/rive/Rive_experiment_01.riv",
+        canvas: document.getElementById("canvas"),
+        autoplay: true,
+        stateMachines: "State Machine 1",
+        onLoad: () => {
+          r.resizeDrawingSurfaceToCanvas();
+        },
+    });
+</script>
 </body>
 </html>
